@@ -10,3 +10,6 @@ Material generado en el curso Creación De Videojuegos
 - Diseño de juegos
 - Historia de videojuegos
 - Creación de juego Flappy Birds parte 1
+
+## Clase 3 - https://youtu.be/3RwhIlgJCY4
+- Presentación de propuestas
