@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    
     [Header("Physics")]
     [SerializeField] Vector2 Velocity = new Vector2(1f, 3f);
     [SerializeField] float _collisionFloatMargin = 0.45f;
