@@ -1,3 +1,5 @@
 ﻿<Solution>
+  <Project Path="2DHandPainted.csproj" />
+  <Project Path="2DHandPaintedEditor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
 </Solution>

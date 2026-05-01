@@ -8,6 +8,13 @@ public class Ball : MonoBehaviour
     [Header("Physics")]
     [SerializeField] Vector2 Velocity = new Vector2(1f, 3f);
     [SerializeField] float _collisionFloatMargin = 0.45f;
+    [SerializeField] float XMultiplier = 1f;
+
+
+    bool playing =false;
+    [SerializeField] Vector2 paddleToBallDistance = new Vector2(0f, 2f);
+    [SerializeField] Pad pad;
+
 
 
     private Rigidbody2D rb;
@@ -17,10 +24,31 @@ public class Ball : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+
+    void LockToPaddle()
+    {
+        if (!playing)
+        {
+            Vector2 paddleRef = pad.transform.position;
+            Vector2 paddlePos = new Vector2(paddleRef.x, paddleRef.y);
+            transform.position = paddlePos + paddleToBallDistance;
+        }
+    }
+
+    void LaunchBall()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            playing = true;
+            rb.linearVelocity = new Vector2(0f, 1f);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        // Visual   
+        LockToPaddle();
+        LaunchBall();
     }
 
     void FixedUpdate() // Fisicas del juego -> 50 veces por segundo
@@ -37,10 +65,10 @@ public class Ball : MonoBehaviour
         Velocity = new Vector2(Velocity.x * -1, Velocity.y);
     }
 
-    void OnPaddleCollision()
-    {
-        // Si la bola rebota hacia un costado, 
-        // el angulo del rebote deberia de variar con respecto al punto de colision
+    void OnPaddleCollision(Collision2D collision){
+        float xCollisionPoint = collision.contacts[0].point.x - collision.transform.position.x;
+        Velocity = new Vector2(xCollisionPoint * XMultiplier, Velocity.y * -1);
+        rb.linearVelocity = Velocity;
     }
 
     void OnBlockCollision(Collision2D elementBlock)
@@ -58,6 +86,12 @@ public class Ball : MonoBehaviour
         {
             OnVerticalCollision();
         }
+    }
+
+    void OnLost()
+    {
+        GameManager.instance.Lives--;
+        playing = false;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -81,6 +115,14 @@ public class Ball : MonoBehaviour
         if(collisionTag == Constants.BLOCK_TAG)
         {
             OnBlockCollision(collision);
+        }
+        else if(collisionTag == Constants.PADDLE_TAG)
+        {
+            OnPaddleCollision(collision);
+        }
+        else if(collisionTag == Constants.LOST_TAG)
+        {
+           OnLost();
         }
 
     }
