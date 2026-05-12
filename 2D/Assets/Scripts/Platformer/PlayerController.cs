@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
+
+    public LayerMask groundLayer;
+
     [Header("References")]
     [SerializeField] Animator Animator;
 
@@ -15,6 +18,11 @@ public class PlayerController : MonoBehaviour
     public float ForceDirection;
 
     private Vector3 direction;
+
+    public Vector3 playerOffset;
+    public float groundLength = 0.55f;
+
+    public bool jumping;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,6 +59,7 @@ public class PlayerController : MonoBehaviour
         Quaternion rotationTarget = Quaternion.Euler(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotationTarget, Time.fixedDeltaTime * 10);
         Physics.AddForce(new Vector2(ForceX * ForceDirection * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
+       jumping = !Physics2D.Raycast(transform.position + playerOffset, Vector2.down, groundLength, groundLayer);
     }
 
     public void RunControl(InputAction.CallbackContext context)
@@ -64,5 +73,17 @@ public class PlayerController : MonoBehaviour
         {
             ForceDirection = 0;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+       // Gizmos.DrawLine(transform.position + playerOffset, transform.position + playerOffset + Vector3.down * groundLength);
+       // Gizmos.DrawLine(transform.position - playerOffset, transform.position - playerOffset + Vector3.down * groundLength);
+
+
+
+    Gizmos.DrawLine( transform.position + playerOffset, transform.position + playerOffset + Vector3.down * groundLength);
+    
     }
 }
