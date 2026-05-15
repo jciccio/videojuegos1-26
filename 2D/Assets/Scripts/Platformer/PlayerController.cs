@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     public bool jumping;
 
+    public bool jumpPressed;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -85,5 +87,18 @@ public class PlayerController : MonoBehaviour
 
     Gizmos.DrawLine( transform.position + playerOffset, transform.position + playerOffset + Vector3.down * groundLength);
     
+    }
+
+     public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            jumpPressed = true;
+            Physics.AddForce(transform.up * 20f , ForceMode2D.Impulse);
+        }
+        else if (context.canceled)
+        {
+            jumpPressed = false;
+        }
     }
 }
