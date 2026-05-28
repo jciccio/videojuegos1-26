@@ -3,27 +3,21 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
-
+    [Header("Physics")]
+    [SerializeField] float ForceX = 100f;
     public LayerMask groundLayer;
 
     [Header("References")]
     [SerializeField] Animator Animator;
 
-    [Header("Physics")]
-    [SerializeField] float ForceX = 100f;
-
     private Rigidbody2D Physics;
 
     [Header("Read Only Fields")]
     public float ForceDirection;
-
     private Vector3 direction;
-
     public Vector3 playerOffset;
     public float groundLength = 0.55f;
-
     public bool jumping;
-
     public bool jumpPressed;
 
 
@@ -61,7 +55,7 @@ public class PlayerController : MonoBehaviour
         Quaternion rotationTarget = Quaternion.Euler(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotationTarget, Time.fixedDeltaTime * 10);
         Physics.AddForce(new Vector2(ForceX * ForceDirection * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
-       jumping = !Physics2D.Raycast(transform.position + playerOffset, Vector2.down, groundLength, groundLayer);
+        jumping = !Physics2D.Raycast(transform.position + playerOffset, Vector2.down, groundLength, groundLayer);
     }
 
     public void RunControl(InputAction.CallbackContext context)
@@ -80,16 +74,12 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-       // Gizmos.DrawLine(transform.position + playerOffset, transform.position + playerOffset + Vector3.down * groundLength);
-       // Gizmos.DrawLine(transform.position - playerOffset, transform.position - playerOffset + Vector3.down * groundLength);
-
-
-
-    Gizmos.DrawLine( transform.position + playerOffset, transform.position + playerOffset + Vector3.down * groundLength);
-    
+        // Gizmos.DrawLine(transform.position + playerOffset, transform.position + playerOffset + Vector3.down * groundLength);
+        // Gizmos.DrawLine(transform.position - playerOffset, transform.position - playerOffset + Vector3.down * groundLength);
+        Gizmos.DrawLine( transform.position + playerOffset, transform.position + playerOffset + Vector3.down * groundLength);
     }
 
-     public void Jump(InputAction.CallbackContext context)
+    public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
