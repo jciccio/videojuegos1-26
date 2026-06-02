@@ -20,7 +20,9 @@ Material generado en el curso Creación De Videojuegos
 - Script para la paleta y movimiento de la bola
 - Explicación físicas básicas
 
-## Clase 5 - 
+## Clase 5 
+> [!TIP]
+> Clase virtual asíncrona
 - Presentación de GDD
 
 ## Clase 6 - https://youtu.be/UeuVhkX2wBk
@@ -42,7 +44,7 @@ Material generado en el curso Creación De Videojuegos
 - Materials
 - Terrains
 
-## Clase 10 -
+## Clase 10 
 > [!TIP]
 > Clase presencial
 - Presentación de prototipos
@@ -61,7 +63,9 @@ Material generado en el curso Creación De Videojuegos
 ## Clase 15 -
 > [!TIP]
 > Clase presencial
+- Presentación de proyectos finales
 
 ## Clase 16 -
 > [!TIP]
 > Clase presencial
+- Presentación de temas de laboratorio
