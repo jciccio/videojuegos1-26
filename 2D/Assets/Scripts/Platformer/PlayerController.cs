@@ -21,6 +21,17 @@ public class PlayerController : MonoBehaviour
     public bool jumpPressed;
 
 
+    [Header("Physics Zone")]
+
+    public float jumpSpeed  = 6f;
+    public float gravity = 1f;
+    public float fallMultiplier = 5f;
+    public float linearDrag; 
+
+    public float jumpDelay = 0.25f;
+    public float jumpTimer;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -56,6 +67,12 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, rotationTarget, Time.fixedDeltaTime * 10);
         Physics.AddForce(new Vector2(ForceX * ForceDirection * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
         jumping = !Physics2D.Raycast(transform.position + playerOffset, Vector2.down, groundLength, groundLayer);
+        ModifyPlayerPhysics();
+        if (jumpTimer > Time.time && !jumping)
+        {
+            Jump();
+        }
+       
     }
 
     public void RunControl(InputAction.CallbackContext context)
@@ -83,12 +100,39 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
+            jumpTimer = Time.time + jumpDelay;
             jumpPressed = true;
-            Physics.AddForce(transform.up * 20f , ForceMode2D.Impulse);
         }
         else if (context.canceled)
         {
             jumpPressed = false;
+        }
+    }
+
+    void Jump()
+    {
+        Physics.linearVelocity = new Vector2(Physics.linearVelocity.x, 0);
+        Physics.AddForce(transform.up * jumpSpeed , ForceMode2D.Impulse);
+    }
+
+    void ModifyPlayerPhysics()
+    {
+        if (!jumping)
+        {
+            Physics.gravityScale = 0;
+        }
+        else
+        {
+            Physics.gravityScale = gravity;
+            Physics.linearDamping = linearDrag * 0.15f;
+            if (Physics.linearVelocity.y  > 0) // Va hacia arriba
+            {
+                Physics.gravityScale = gravity * (fallMultiplier /2);
+            }
+            else
+            {
+                Physics.gravityScale  = gravity * fallMultiplier;
+            }
         }
     }
 }

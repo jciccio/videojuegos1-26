@@ -691,7 +691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3548554473003050530, guid: 057cac2d8f5984c6993985041db42344, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1162953
+      value: -2.26
       objectReference: {fileID: 0}
     - target: {fileID: 3548554473003050530, guid: 057cac2d8f5984c6993985041db42344, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1154,16 +1154,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8dca9007ac174f1abff5cd9f44e221d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  ForceX: 50
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   Animator: {fileID: 1690905919}
-  ForceX: 50
   ForceDirection: 0
   playerOffset: {x: 0, y: 0, z: 0}
   groundLength: 0.55
   jumping: 0
   jumpPressed: 0
+  jumpSpeed: 6
+  gravity: 1
+  fallMultiplier: 5
+  linearDrag: 0
+  jumpDelay: 0.25
+  jumpTimer: 0
 --- !u!114 &1690905925
 MonoBehaviour:
   m_ObjectHideFlags: 0
