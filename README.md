@@ -54,9 +54,11 @@ Material generado en el curso Creación De Videojuegos
 - Salto 2D
 - Lineamientos Proyecto
 
-## Clase 12 -
+## Clase 12 - https://youtu.be/X2VZFyywkqQ
+- Shaders
 
-## Clase 13 -
+## Clase 13 - 
+- 
 
 ## Clase 14 -
 
