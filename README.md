@@ -57,17 +57,29 @@ Material generado en el curso Creación De Videojuegos
 ## Clase 12 - https://youtu.be/X2VZFyywkqQ
 - Shaders
 
-## Clase 13 - 
-- 
+## Clase 13 - https://youtu.be/eH8MFjpWm-8
+- Principios Juegos móviles
+- Field of View
+- Waypoints
+- Spawners
+- Enemigos
 
-## Clase 14 -
+## Clase 14 - https://youtu.be/katj7nw1ImQ
+- AI Unity -> NavMesh
+- Sistema de partículas
+- AI MLAgents
+- Profiler Unity
 
-## Clase 15 -
+
+## Clase 15 - 5:00
 > [!TIP]
 > Clase presencial
 - Presentación de proyectos finales
+- Recuerde revisar detalladamente todos los lineamientos de la entrega
 
-## Clase 16 -
+## Clase 16 - 5:00
 > [!TIP]
 > Clase presencial
 - Presentación de temas de laboratorio
+- Recuerde revisar detalladamente todos los lineamientos de la entrega
+- Entrega del video promocional
